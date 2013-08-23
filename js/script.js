@@ -18,6 +18,9 @@ jQuery(document).ready(function($) {
         $current_word = $('#current_word');
         $clear_button = $('#clear_button');
         $speed_slider = $('#speed_slider');
+        $alphabet_normal_radio = $('#alphabet_normal_radio');
+        $alphabet_frequency_radio = $('#alphabet_frequency_radio');
+        $alphabet_form = $('#alphabet_form');
         self = this;
 
         this.nextLetter = function() {
@@ -53,6 +56,17 @@ jQuery(document).ready(function($) {
             $current_word.text('');
         };
 
+        this.changeAlphabet = function() {
+            if($alphabet_normal_radio.is(':checked')) {
+                current_alphabet = alphabet_normal_order;
+            } else if($alphabet_frequency_radio.is(':checked')) {
+                current_alphabet = alphabet_by_frequency;
+            }
+
+            self.resetLetter();
+        };
+
+        this.changeAlphabet();
         this.setSpeed();
         this.timer();
 
@@ -66,6 +80,10 @@ jQuery(document).ready(function($) {
             self.setSpeed();
         });
         
+        $alphabet_form.change(function() {
+            self.changeAlphabet();
+        });
+
         $clear_button.click(function() {
             self.clearWord();
         });
