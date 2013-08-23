@@ -10,9 +10,9 @@ jQuery(document).ready(function($) {
                                      'G','Y','P','B','V','K','J','X',
                                      'Q','Z'];
         var position = 0;
-        var num_timer_loops = 0;
+        var num_timer_loops = 1;
         var current_alphabet = alphabet_normal_order;
-        var slowest_speed = 2000;
+        var slowest_speed = 200;
         var milliseconds_per_change;
         $letter = $('#letter');
         $current_word = $('#current_word');
@@ -30,18 +30,19 @@ jQuery(document).ready(function($) {
 
         this.resetLetter = function() {
             position = 0;
-            num_timer_loops = 0;
+            num_timer_loops = 1;
             $letter.text(current_alphabet[position]);
         };
 
         this.timer = function() {
             setTimeout(function() {
-                if( (num_timer_loops + 1) % milliseconds_per_change == 0) {
+                console.log(num_timer_loops % milliseconds_per_change);
+                if( num_timer_loops % milliseconds_per_change == 0) {
                     self.nextLetter();
                 }
                 num_timer_loops++;
                 self.timer();
-            }, 1)
+            }, 10)
         };
 
         this.addLetter = function() {
@@ -73,7 +74,6 @@ jQuery(document).ready(function($) {
         $letter.click(function() {
             self.addLetter();
             self.resetLetter();
-            return false;
         });
         
         $speed_slider.change(function() {
