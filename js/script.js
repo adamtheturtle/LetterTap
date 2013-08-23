@@ -8,11 +8,7 @@ jQuery(document).ready(function($) {
         self = this;
 
         this.nextLetter = function() {
-            position++;
-            if (position > alphabet.length) {
-                position = 0;
-            }
-
+            position = (position + 1) % alphabet.length;
             $letter.text(alphabet[position]);
         };
 
@@ -22,10 +18,11 @@ jQuery(document).ready(function($) {
         };
 
         this.timer = function() {
+            var timer_milliseconds = 200;
             setTimeout(function() {
                 self.nextLetter();
                 self.timer();
-            }, 2000)
+            }, timer_milliseconds)
         };
 
         this.addLetter = function() {
