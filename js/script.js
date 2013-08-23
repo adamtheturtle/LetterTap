@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
         var position = 0;
         var num_timer_loops = 1;
         var current_alphabet = alphabet_normal_order;
-        var slowest_speed = 200;
+        var slowest_speed_seconds_per_change = 8;
         var milliseconds_per_change;
         $letter = $('#letter');
         $current_word = $('#current_word');
@@ -50,6 +50,7 @@ jQuery(document).ready(function($) {
         };
 
         this.setSpeed = function() {
+            slowest_speed = slowest_speed_seconds_per_change * 100;
             milliseconds_per_change = Math.round(slowest_speed / $speed_slider.val());
         };
 
