@@ -16,6 +16,7 @@ jQuery(document).ready(function($) {
         var milliseconds_per_change;
         $letter = $('#letter');
         $current_word = $('#current_word');
+        $clear_button = $('#clear_button');
         $speed_slider = $('#speed_slider');
         self = this;
 
@@ -45,8 +46,12 @@ jQuery(document).ready(function($) {
         };
 
         this.setSpeed = function() {
-            milliseconds_per_change = slowest_speed / $speed_slider.val();
-        }
+            milliseconds_per_change = Math.round(slowest_speed / $speed_slider.val());
+        };
+
+        this.clearWord = function() {
+            $current_word.text('');
+        };
 
         this.setSpeed();
         this.timer();
@@ -59,6 +64,10 @@ jQuery(document).ready(function($) {
         
         $speed_slider.change(function() {
             self.setSpeed();
+        });
+        
+        $clear_button.click(function() {
+            self.clearWord();
         });
     })();
 
