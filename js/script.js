@@ -4,12 +4,19 @@ jQuery(document).ready(function($) {
                                      'I','J','K','L', 'M','N','O','P',
                                      'Q','R','S','T','U','V','W','X',
                                      'Y','Z'];
+
+        var alphabet_by_frequency = ['E','T','A','O','I','N','S','H',
+                                     'R','D','L','C','U','M','W','F',
+                                     'G','Y','P','B','V','K','J','X',
+                                     'Q','Z'];
         var position = 0;
         var num_timer_loops = 0;
         var current_alphabet = alphabet_normal_order;
-        var milliseconds_per_change = 200;
+        var slowest_speed = 2000;
+        var milliseconds_per_change;
         $letter = $('#letter');
-        $current_word = $('#current_word'),
+        $current_word = $('#current_word');
+        $speed_slider = $('#speed_slider');
         self = this;
 
         this.nextLetter = function() {
@@ -37,12 +44,21 @@ jQuery(document).ready(function($) {
             $current_word.text($current_word.text() + $letter.text());
         };
 
+        this.setSpeed = function() {
+            milliseconds_per_change = slowest_speed / $speed_slider.val();
+        }
+
+        this.setSpeed();
         this.timer();
 
         $letter.click(function() {
             self.addLetter();
             self.resetLetter();
             return false;
+        });
+        
+        $speed_slider.change(function() {
+            self.setSpeed();
         });
     })();
 
