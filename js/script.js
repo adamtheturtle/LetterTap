@@ -56,6 +56,7 @@ jQuery(document).ready(function($) {
 
         this.clearWord = function() {
             $current_word.text('');
+            self.resetLetter();
         };
 
         this.changeAlphabet = function() {

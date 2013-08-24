@@ -3,21 +3,29 @@
 <head>
     <meta charset="utf8">
     <title>Letter Tap</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <span id="letter">A</span>
-    <span id="current_word"></span>
-    <label for="speed_slider">Speed</label>
-    <input type="range" name="points" id="speed_slider" value="3" min="1" max="5">
-    <button type="button" id="clear_button">Clear</button>
-    <form id="alphabet_form">
-        <input type="radio" name="alphabet" id="alphabet_normal_radio" checked="checked">
-        <label for="alphabet_normal_radio">Normal alphabet</label>
-        <input type="radio" name="alphabet" id="alphabet_frequency_radio">
-        <label for="alphabet_frequency_radio">Frequency alphabet</label>
-    </form>
+    <div>
+        <span id="letter">A</span>
+    </div>
+    <div style="height: 30px;">
+        <span id="current_word"></span>
+    </div>
+    <div>
+        <label for="speed_slider">Speed</label>
+        <input type="range" name="points" id="speed_slider" min="1" max="5" value="3">
+        <button type="button" id="clear_button" class="btn btn-default">Clear</button>
+        <form id="alphabet_form">
+            <input type="radio" name="alphabet" id="alphabet_normal_radio" checked="checked">
+            <label for="alphabet_normal_radio">Normal alphabet</label>
+            <input type="radio" name="alphabet" id="alphabet_frequency_radio">
+            <label for="alphabet_frequency_radio">Frequency alphabet</label>
+        </form>
+    </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
