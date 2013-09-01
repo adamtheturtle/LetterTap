@@ -15,6 +15,7 @@ jQuery(document).ready(function($) {
         var slowest_speed_seconds_per_change = 8;
         var milliseconds_per_change;
         $letter = $('#letter');
+        $letter_container = $('#letter_container');
         $current_word = $('#current_word');
         $clear_button = $('#clear_button');
         $speed_slider = $('#speed_slider');
@@ -36,7 +37,6 @@ jQuery(document).ready(function($) {
 
         this.timer = function() {
             setTimeout(function() {
-                console.log(num_timer_loops % milliseconds_per_change);
                 if( num_timer_loops % milliseconds_per_change == 0) {
                     self.nextLetter();
                 }
@@ -73,7 +73,7 @@ jQuery(document).ready(function($) {
         this.setSpeed();
         this.timer();
 
-        $letter.click(function() {
+        $letter_container.click(function() {
             self.addLetter();
             self.resetLetter();
         });
