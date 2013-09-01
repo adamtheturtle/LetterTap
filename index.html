@@ -1,31 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf8">
+<html>
+  <head>
     <title>Letter Tap</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <div id="letter_container" style="border: 1px solid black; height: 100px; width: 100px;">
-        <span id="letter">A</span>
-    </div>
-    <div style="height: 30px;">
-        <span id="current_word"></span>
-    </div>
-    <div>
-        <label for="speed_slider">Speed</label>
-        <input type="range" name="points" id="speed_slider" min="1" max="5" value="3">
-        <button type="button" id="clear_button" class="btn btn-default">Clear</button>
-        <form id="alphabet_form">
-            <input type="radio" name="alphabet" id="alphabet_normal_radio" checked="checked">
-            <label for="alphabet_normal_radio">Normal alphabet</label>
-            <input type="radio" name="alphabet" id="alphabet_frequency_radio">
-            <label for="alphabet_frequency_radio">Frequency alphabet</label>
-        </form>
-    </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+      <div id="letter_container" style="border: 1px solid black; height: 100px; width: 100px;">
+          <span id="letter">A</span>
+      </div>
+      <div style="height: 30px;">
+          <span id="current_word"></span>
+      </div>
+      <div>
+          <label for="speed_slider">Speed</label>
+          <input type="range" name="points" id="speed_slider" min="1" max="5" value="3">
+          <button type="button" id="clear_button" class="btn btn-default">Clear</button>
+          <form id="alphabet_form">
+              <input type="radio" name="alphabet" id="alphabet_normal_radio" checked="checked">
+              <label for="alphabet_normal_radio">Normal alphabet</label>
+              <input type="radio" name="alphabet" id="alphabet_frequency_radio">
+              <label for="alphabet_frequency_radio">Frequency alphabet</label>
+          </form>
+      </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-</body>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>
