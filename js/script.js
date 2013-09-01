@@ -21,71 +21,70 @@ $(document).ready(function() {
     $alphabet_normal_radio = $('#alphabet_normal_radio');
     $alphabet_frequency_radio = $('#alphabet_frequency_radio');
     $alphabet_form = $('#alphabet_form');
-    self = this;
 
-    this.nextLetter = function() {
+    nextLetter = function() {
         position = (position + 1) % current_alphabet.length;
         $letter.text(current_alphabet[position]);
     };
 
-    this.resetLetter = function() {
+    resetLetter = function() {
         position = 0;
         num_timer_loops = 1;
         $letter.text(current_alphabet[position]);
     };
 
-    this.timer = function() {
+    timer = function() {
         setTimeout(function() {
             if( num_timer_loops % milliseconds_per_change == 0) {
-                self.nextLetter();
+                nextLetter();
             }
             num_timer_loops++;
-            self.timer();
+            timer();
         }, 10)
     };
 
-    this.addLetter = function() {
+    addLetter = function() {
         $current_word.text($current_word.text() + $letter.text());
     };
 
-    this.setSpeed = function() {
+    setSpeed = function() {
         slowest_speed = slowest_speed_seconds_per_change * 100;
         milliseconds_per_change = Math.round(slowest_speed / $speed_slider.val());
     };
 
-    this.clearWord = function() {
+    clearWord = function() {
         $current_word.text('');
-        self.resetLetter();
+        resetLetter();
     };
 
-    this.changeAlphabet = function() {
+    changeAlphabet = function() {
         if($alphabet_normal_radio.is(':checked')) {
             current_alphabet = alphabet_normal_order;
         } else if($alphabet_frequency_radio.is(':checked')) {
             current_alphabet = alphabet_by_frequency;
         }
 
-        self.resetLetter();
+        resetLetter();
     };
 
-    this.changeAlphabet();
-    this.setSpeed();
-    this.timer();
+    changeAlphabet();
+    setSpeed();
+    timer();
 
     $letter_container.click(function() {
-        self.addLetter();
-        self.resetLetter();
+        addLetter();
+        resetLetter();
     });
     
     $speed_slider.change(function() {
-        self.setSpeed();
+        setSpeed();
     });
     
     $alphabet_form.change(function() {
-        self.changeAlphabet();
+        changeAlphabet();
     });
 
     $clear_button.click(function() {
-        self.clearWord();
+        clearWord();
     });
 });
