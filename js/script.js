@@ -9,6 +9,9 @@ $('#writing_page').bind('pageinit', function() {
     var position = 0;
     var current_alphabet = alphabet_normal_order;
     var slowest_speed_seconds_per_change = 8;
+    var time_between_changes = 2600;
+    var normal_alphabet_radio = $('#normal-alphabet');
+    var frequency_alphabet_radio = $('#frequency-alphabet');
     var letter = $('#letter');
     var letter_container = $('#letter_container');
     var current_word = $('#current_word');
@@ -16,7 +19,6 @@ $('#writing_page').bind('pageinit', function() {
     var speed_slider = $('#speed_slider');
     var alphabet_form = $('#alphabet_form');
     var settings_page = $('#settings_page');
-    var time_between_changes = 2600;
 
     resetLetter = function() {
         position = 0;
@@ -29,11 +31,6 @@ $('#writing_page').bind('pageinit', function() {
             letter.text(current_alphabet[position]);
             timer();
         }, time_between_changes)
-    };
-
-    addLetter = function() {
-        current_word.text(current_word.text() + letter.text());
-        clear_button.show();
     };
 
     clearWord = function() {
@@ -65,9 +62,6 @@ $('#writing_page').bind('pageinit', function() {
     });
 
     settings_page.on("pageshow", function() {
-        var normal_alphabet_radio = $('#normal-alphabet')
-        var frequency_alphabet_radio = $('#frequency-alphabet')
-
         if (current_alphabet === alphabet_normal_order) {
             normal_alphabet_radio.attr("checked", true).checkboxradio("refresh");
             frequency_alphabet_radio.attr("checked", false).checkboxradio("refresh");
@@ -75,11 +69,11 @@ $('#writing_page').bind('pageinit', function() {
             normal_alphabet_radio.attr("checked", false).checkboxradio("refresh");
             frequency_alphabet_radio.attr("checked", true).checkboxradio("refresh");
         }
-
     });
 
     letter_container.click(function() {
-        addLetter();
+        current_word.text(current_word.text() + letter.text());
+        clear_button.show();
         resetLetter();
     });
 
