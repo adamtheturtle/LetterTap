@@ -16,7 +16,6 @@ $('#writing_page').bind('pageinit', function() {
     var letter_container = $('#letter_container');
     var current_word = $('#current_word');
     var clear_button = $('#clear_button');
-    var speed_slider = $('#speed_slider');
     var alphabet_form = $('#alphabet_form');
     var settings_page = $('#settings_page');
 
@@ -62,13 +61,9 @@ $('#writing_page').bind('pageinit', function() {
     });
 
     settings_page.on("pageshow", function() {
-        if (current_alphabet === alphabet_normal_order) {
-            normal_alphabet_radio.attr("checked", true).checkboxradio("refresh");
-            frequency_alphabet_radio.attr("checked", false).checkboxradio("refresh");
-        } else if (current_alphabet === alphabet_by_frequency) {
-            normal_alphabet_radio.attr("checked", false).checkboxradio("refresh");
-            frequency_alphabet_radio.attr("checked", true).checkboxradio("refresh");
-        }
+        is_alphabet_normal_order = current_alphabet === alphabet_normal_order;
+        normal_alphabet_radio.attr("checked", is_alphabet_normal_order).checkboxradio("refresh");
+        frequency_alphabet_radio.attr("checked", !is_alphabet_normal_order).checkboxradio("refresh");
     });
 
     letter_container.click(function() {
