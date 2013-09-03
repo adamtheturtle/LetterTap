@@ -1,0 +1,29 @@
+input.ui-slider-input {
+    display: none;
+}
+
+#current_word_container {
+    height: 200px;
+    font-size: 100px;
+    border: 1px solid black;
+}
+
+#letter_container {
+    border: 1px solid black;
+    font-size: 500px;
+    text-align: center;
+}
+
+#settings_content {
+    display: block;
+    margin: auto auto;
+    text-align: center;
+}
+
+#alphabet_form {
+    padding-top: 40px;
+}
+
+#speed_label {
+    font-size: 20px;
+}

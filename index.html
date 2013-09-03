@@ -1,33 +1,56 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Letter Tap</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-  </head>
-  <body>
-      <div id="letter_container" class="jumbotron">
-          <span id="letter">A</span>
-      </div>
-      <div style="height: 30px;">
-          <span id="current_word"></span>
-      </div>
-      <div>
-          <label for="speed_slider">Speed</label>
-          <input type="range" name="points" id="speed_slider" min="1" max="5" value="3">
-          <button type="button" id="clear_button" class="btn btn-default">Clear</button>
-          <form id="alphabet_form">
-              <input type="radio" name="alphabet" id="alphabet_normal_radio" checked="checked">
-              <label for="alphabet_normal_radio">Normal alphabet</label>
-              <input type="radio" name="alphabet" id="alphabet_frequency_radio">
-              <label for="alphabet_frequency_radio">Frequency alphabet</label>
-          </form>
-      </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Letter Tap</title> 
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+    <link href="css/style.css" rel="stylesheet" media="screen">
+</head> 
+<body> 
+    <div data-role="page" id="writing_page">
+        <div data-role="content">
+            <div>
+                <a href="#settings_page" data-rel="dialog" data-transition="pop" data-role="button">Settings</a>
+            </div>
+            <div id="letter_container">
+                <span id="letter">A</span>
+            </div>
+            <div id="current_word_container">
+                <span id="current_word"></span>
+                <a id="clear_button" data-role="button" data-inline="true">Clear</a>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="settings_page">
+        <div data-role="header">
+            <h1>Settings</h1>
+        </div>
+        <div data-role="content" id="settings_content">
+            <span id="speed_label">Speed:</span><input  type="range"
+                                                        name="points"
+                                                        id="speed_slider"
+                                                        min="1"
+                                                        max="5"
+                                                        value="3">
+            <fieldset data-role="controlgroup" data-type="horizontal" id="alphabet_form" >
+                <input  type="radio"
+                        name="alphabet-choice"
+                        id="normal-alphabet"
+                        value="normal"
+                        checked="checked">
+                <label for="normal-alphabet">Normal Alphabet</label>
+
+                <input  type="radio"
+                        name="alphabet-choice"
+                        id="frequency-alphabet"
+                        value="frequency">
+                <label for="frequency-alphabet">Frequency Alphabet</label>
+            </fieldset>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
     <script src="js/script.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-  </body>
+</body>
 </html>
