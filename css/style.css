@@ -26,4 +26,5 @@ input.ui-slider-input {
 
 #speed_label {
     font-size: 20px;
+    display:inline;
 }
