@@ -12,3 +12,10 @@ Technology
 ----------
 
 The current initial prototype is a client side web implementation. There are advantages to creating a native tablet application (such as native autocorrect and predictive text functions), and this may come at a later stage.
+
+It uses jQuery Mobile and is targetted at my iPad mini and iPhone 5. It should be responsive enough to work on most touch devices.
+
+Features
+---------
+
+The only settings are to use a frequency-of-use sorted alphabet instead of the normal alphabet and speed options.
