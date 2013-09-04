@@ -11,9 +11,13 @@
 </head> 
 <body> 
     <div data-role="page" id="writing_page">
-        <div data-role="content">
-            <a id="letter_container" data-role="button" data-shadow="false" data-corners="false">
-                <span id="letter">A</span>
+        <div id="writing_page_content" data-role="content">
+            <a  id="letter_container"
+                data-role="button"
+                data-shadow="false"
+                data-corners="false"
+                data-theme="e">
+                    <span id="letter">A</span>
             </a>
             <div id="bottom_section">
                 <div id="current_word_container">
@@ -50,7 +54,7 @@
             <h1>Settings</h1>
         </div>
         <div data-role="content" id="settings_content">
-            <label id="speed_label" for="speed_slider">Speed:</label>
+            <label class="form_label" id="speed_label" for="speed_slider">Speed:</label>
             <input  type="range"
                     name="points"
                     id="speed_slider"
@@ -59,13 +63,14 @@
                     value="3">
             <fieldset   data-role="controlgroup"
                         data-type="horizontal"
-                        id="alphabet_form" >
+                        id="alphabet_form"
+                        data-mini="true">
                 <input  type="radio"
                         name="alphabet-choice"
                         id="normal-alphabet"
                         value="normal"
                         checked="checked">
-                <label for="normal-alphabet">Normal Alphabet</label>
+                <label for="normal-alphabet">Normal</label>
 
                 <input  type="radio"
                         name="alphabet-choice"
