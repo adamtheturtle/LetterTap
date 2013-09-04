@@ -9,23 +9,27 @@
 <body> 
     <div data-role="page" id="writing_page">
         <div data-role="content">
-            <div>
-                <a  href="#settings_page"
-                    data-rel="dialog"
-                    data-transition="pop"
-                    data-role="button"
-                    data-icon="gear"
-                    data-theme="b"
-                    data-inline="true">
-                        Settings
-                </a>
-            </div>
-            <div id="letter_container">
+            <a id="letter_container" data-role="button" data-corners="false">
                 <span id="letter">A</span>
-            </div>
-            <div id="current_word_container">
-                <span id="current_word"></span>
-                <a id="clear_button" data-role="button" data-inline="true">Clear</a>
+            </a>
+            <div id="bottom_section">
+                <div id="current_word_container">
+                    <span id="current_word" ></span>
+                </div>
+                
+                <div id="carer_container">
+                    <a id="clear_button" class="carer_button" data-role="button" data-inline="true">Clear</a>
+                    <a  href="#settings_page"
+                        data-rel="dialog"
+                        data-transition="pop"
+                        data-role="button"
+                        data-icon="gear"
+                        data-theme="b"
+                        data-inline="true"
+                        class="carer_button">
+                            Settings
+                    </a>
+                </div>
             </div>
         </div>
     </div>

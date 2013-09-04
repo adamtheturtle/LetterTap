@@ -35,7 +35,7 @@ $('#writing_page').bind('pageinit', function() {
     clearWord = function() {
         current_word.text('');
         resetLetter();
-        clear_button.hide();
+        clear_button.addClass('ui-disabled');
     };
 
     changeAlphabet = function(selected_alphabet) {
@@ -60,7 +60,11 @@ $('#writing_page').bind('pageinit', function() {
         });
     });
 
-    settings_page.on("pageshow", function() {
+    settings_page.bind("pagehide",function(){
+      resetLetter();
+    });
+
+    settings_page.bind("pageshow", function() {
         is_alphabet_normal_order = current_alphabet === alphabet_normal_order;
         normal_alphabet_radio.attr("checked", is_alphabet_normal_order).checkboxradio("refresh");
         frequency_alphabet_radio.attr("checked", !is_alphabet_normal_order).checkboxradio("refresh");
@@ -68,7 +72,7 @@ $('#writing_page').bind('pageinit', function() {
 
     letter_container.click(function() {
         current_word.text(current_word.text() + letter.text());
-        clear_button.show();
+        clear_button.removeClass('ui-disabled');
         resetLetter();
     });
 
@@ -80,5 +84,6 @@ $('#writing_page').bind('pageinit', function() {
     clear_button.click(function() {
         clearWord();
     });
+    
 
 });
