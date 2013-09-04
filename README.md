@@ -18,4 +18,14 @@ It uses jQuery Mobile and is targetted at my iPad mini and iPhone 5. It should b
 Features
 ---------
 
+One letter shows at a time, taking up most of the screen. The rest of the screen is used to show the word currently typed, and a couple of buttons for the carer of the user. These buttons are Clear and Settings.
+
 The only settings are to use a frequency-of-use sorted alphabet instead of the normal alphabet and speed options.
+
+Roadmap and known issues
+------------------------
+
+* Fix FOUC
+* Deal with long typed words and sentences
+* User testing to determine whether it needs a "Tap to Start" option
+* User testing to determine whether it needs a  space option
