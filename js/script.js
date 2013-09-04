@@ -64,12 +64,6 @@ $('#writing_page').bind('pageinit', function() {
       resetLetter();
     });
 
-    settings_page.bind("pageshow", function() {
-        is_alphabet_normal_order = current_alphabet === alphabet_normal_order;
-        normal_alphabet_radio.attr("checked", is_alphabet_normal_order).checkboxradio("refresh");
-        frequency_alphabet_radio.attr("checked", !is_alphabet_normal_order).checkboxradio("refresh");
-    });
-
     letter_container.click(function() {
         current_word.text(current_word.text() + letter.text());
         clear_button.removeClass('ui-disabled');
