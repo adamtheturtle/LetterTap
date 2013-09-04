@@ -2,6 +2,10 @@ input.ui-slider-input {
     display: none;
 }
 
+.no-js {
+    display: none;
+}
+
 #current_word_container {
     font-size: 50px;
     word-wrap: break-word;
