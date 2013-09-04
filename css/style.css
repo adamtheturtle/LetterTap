@@ -13,6 +13,7 @@ input.ui-slider-input {
 #letter_container {
     position:absolute;
     height:65%;
+    min-height:300px;
     width:100%;
     text-align: center;
     padding-top: 0;
@@ -25,7 +26,7 @@ input.ui-slider-input {
 }
 
 #letter {
-    font-size:100px;
+    font-size:15em;
 }
 
 #settings_content {
@@ -54,6 +55,7 @@ input.ui-slider-input {
 
 #writing_page {
     min-width: 300px;
+    min-height:300px;
 }
 
 #writing_page_content {
