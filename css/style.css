@@ -7,14 +7,13 @@ input.ui-slider-input {
     word-wrap: break-word;
     width:50%;
     float:left;
-    padding-left: 10px;
+    padding-left: 5%;
 }
 
 #letter_container {
     position:absolute;
     height:50%;
     width:70%;
-    border: 1px solid black;
     text-align: center;
     padding-top: 0;
     margin:0;
