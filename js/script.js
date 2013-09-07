@@ -21,10 +21,8 @@ $('#writing_page').bind('pageinit', function() {
     var alphabet_form = $('#alphabet_form');
     var settings_page = $('#settings_page');
     var first_letter_after_reset = false;
-    var step_for_letter = 5;
-    var step_for_word = 2;
     var max_font_for_letter = 500;
-    var max_font_for_word = 200;
+    var max_font_for_word = 100;
 
     resetLetter = function() {
         position = 0;
@@ -60,17 +58,19 @@ $('#writing_page').bind('pageinit', function() {
         resetLetter();
     };
 
-    textfill = function(container, resizable_text, step, max_font) {
+    textfill = function(container, resizable_text, max_font) {
         var font_size = max_font;
         var max_height = container.height();
-        var text_height;
+        var step = Math.ceil(max_font / 100);
+
         do {
             resizable_text.css('font-size', font_size);
             if(resizable_text == current_word) {
                 current_word_container.css('line-height', (font_size + 1) + 'px');
             }
+
             font_size = font_size - step;
-        } while ((resizable_text.height() > max_height) && font_size > 3);
+        } while ((resizable_text.height() > max_height) && font_size > step);
     };
 
     timer();
@@ -92,17 +92,17 @@ $('#writing_page').bind('pageinit', function() {
     letter_container.click(function() {
         current_word.text(current_word.text() + letter.text());
         clear_button.removeClass('ui-disabled');
-        textfill(bottom_section, current_word, step_for_word, max_font_for_letter);
+        textfill(bottom_section, current_word, max_font_for_word);
         resetLetter();
     });
     
     $(window).resize(function() {
-        textfill(letter_container, letter, step_for_letter, max_font_for_letter);
-        textfill(bottom_section, current_word, step_for_word, max_font_for_letter);
+        textfill(letter_container, letter, max_font_for_letter);
+        textfill(bottom_section, current_word, max_font_for_word);
     });
     
     $(document).ready(function() {
-        textfill(letter_container, letter, step_for_letter, max_font_for_letter);
+        textfill(letter_container, letter, max_font_for_letter);
     });
 
     alphabet_form.change(function() {
