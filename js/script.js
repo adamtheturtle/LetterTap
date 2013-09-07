@@ -73,9 +73,21 @@ $('#writing_page').bind('pageinit', function() {
         } while ((resizable_text.height() > max_height) && font_size > step);
     };
 
+    // Hack because pageinit is very early, before letter_container height is ready
+    wait_for_ready = function() {
+        setTimeout(function() {
+            if (letter_container.height() == 65) {
+                wait_for_ready();
+            } else {
+                textfill(letter_container, letter, max_font_for_letter);
+            }
+        }, 5)
+    };
+
     timer();
     clearWord();
     $(document).bind('touchmove', false);
+    wait_for_ready();
 
     settings_page.bind('pageinit', function() {
         var speed_slider = $('#speed_slider');
@@ -86,7 +98,7 @@ $('#writing_page').bind('pageinit', function() {
     });
 
     settings_page.bind("pagehide",function(){
-      resetLetter();
+        resetLetter();
     });
 
     letter_container.click(function() {
@@ -99,10 +111,6 @@ $('#writing_page').bind('pageinit', function() {
     $(window).resize(function() {
         textfill(letter_container, letter, max_font_for_letter);
         textfill(bottom_section, current_word, max_font_for_word);
-    });
-    
-    $(document).ready(function() {
-        textfill(letter_container, letter, max_font_for_letter);
     });
 
     alphabet_form.change(function() {
