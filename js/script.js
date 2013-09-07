@@ -1,4 +1,4 @@
-/*global $ */
+/*global $, document */
 $('#writing_page').bind('pageinit', function () {
     var alphabet_normal_order = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
                                  'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
@@ -59,14 +59,14 @@ $('#writing_page').bind('pageinit', function () {
     };
 
     textfill = function (container, resizable_text, max_font) {
-        var font_size = max_font;
-        var max_height = container.height();
-        var step = Math.ceil(max_font / 100);
+        var font_size = max_font,
+            max_height = container.height(),
+            step = Math.ceil(max_font / 100);
 
         do {
             resizable_text.css('font-size', font_size);
-            if(resizable_text === current_word) {
-                current_word_container.css('line-height', (font_size + 1) + 'px');
+            if (resizable_text === current_word) {
+                current_word_container.css('line-height', font_size  + 'px');
             }
 
             font_size = font_size - step;
