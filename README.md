@@ -26,6 +26,5 @@ Roadmap and known issues
 ------------------------
 
 * Fix FOUC
-* Deal with long typed words and sentences
 * User testing to determine whether it needs a "Tap to Start" option
 * User testing to determine whether it needs a  space option
