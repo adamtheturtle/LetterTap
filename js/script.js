@@ -113,6 +113,4 @@ $('#writing_page').bind('pageinit', function() {
     clear_button.click(function() {
         clearWord();
     });
-    
-
 });
