@@ -18,16 +18,22 @@ $('#writing_page').bind('pageinit', function() {
     var clear_button = $('#clear_button');
     var alphabet_form = $('#alphabet_form');
     var settings_page = $('#settings_page');
+    var first_letter_after_reset = false;
 
     resetLetter = function() {
         position = 0;
         letter.text(current_alphabet[position]);
+        first_letter_after_reset = true;
     };
 
     timer = function() {
         setTimeout(function() {
-            position = (position + 1) % current_alphabet.length;
-            letter.text(current_alphabet[position]);
+            if (!first_letter_after_reset) {
+                position = (position + 1) % current_alphabet.length;
+                letter.text(current_alphabet[position]);
+            }
+
+            first_letter_after_reset = false;
             timer();
         }, time_between_changes)
     };
