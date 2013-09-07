@@ -15,7 +15,8 @@ $('#writing_page').bind('pageinit', function() {
     var letter = $('#letter');
     var letter_container = $('#letter_container');
     var current_word = $('#current_word');
-    var current_word_container = $('#bottom_section');
+    var current_word_container = $('#current_word_container');
+    var bottom_section = $('#bottom_section');
     var clear_button = $('#clear_button');
     var alphabet_form = $('#alphabet_form');
     var settings_page = $('#settings_page');
@@ -84,8 +85,10 @@ $('#writing_page').bind('pageinit', function() {
     letter_container.click(function() {
         current_word.text(current_word.text() + letter.text());
         clear_button.removeClass('ui-disabled');
-        textfill(current_word_container, current_word);
+        textfill(bottom_section, current_word);
         resetLetter();
+        
+        current_word_container.css('line-height', (font_size + 1) + 'px');
     });
     
     $(window).resize(function() {
