@@ -1,4 +1,5 @@
-/*global $, document */
+/*global $ */
+/*jslint browser: true*/
 $('#writing_page').bind('pageinit', function () {
     var alphabet_normal_order = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
                                  'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
@@ -22,7 +23,13 @@ $('#writing_page').bind('pageinit', function () {
         first_letter_after_reset = false,
         max_font_for_letter = 500,
         speed_scale = 1,
-        max_font_for_word = 100;
+        max_font_for_word = 100,
+        resetLetter,
+        timer,
+        clearWord,
+        changeAlphabet,
+        textfill,
+        wait_for_ready;
 
     resetLetter = function () {
         position = 0;
@@ -30,7 +37,7 @@ $('#writing_page').bind('pageinit', function () {
         first_letter_after_reset = true;
     };
 
-    timer = function() {
+    timer = function () {
         setTimeout(function () {
             if (!first_letter_after_reset) {
                 position = (position + 1) % current_alphabet.length;
@@ -86,10 +93,10 @@ $('#writing_page').bind('pageinit', function () {
 
     timer();
     clearWord();
-    $(document).bind ('touchmove', false);
+    $(document).bind('touchmove', false);
     wait_for_ready();
 
-    settings_page.bind ('pageinit', function () {
+    settings_page.bind('pageinit', function () {
         var speed_slider = $('#speed_slider');
         speed_slider.change(function () {
             speed_scale = $(this).val();
@@ -97,7 +104,7 @@ $('#writing_page').bind('pageinit', function () {
         });
     });
 
-    settings_page.bind ("pagehide",function () {
+    settings_page.bind("pagehide", function () {
         resetLetter();
     });
 
