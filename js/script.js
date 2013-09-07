@@ -15,6 +15,7 @@ $('#writing_page').bind('pageinit', function() {
     var letter = $('#letter');
     var letter_container = $('#letter_container');
     var current_word = $('#current_word');
+    var current_word_container = $('#bottom_section');
     var clear_button = $('#clear_button');
     var alphabet_form = $('#alphabet_form');
     var settings_page = $('#settings_page');
@@ -54,6 +55,16 @@ $('#writing_page').bind('pageinit', function() {
         resetLetter();
     };
 
+    textfill = function(container, resizable_text) {
+        var font_size = 2000;
+        var max_height = container.height();
+        var text_height;
+        do {
+            resizable_text.css('font-size', font_size);
+            font_size = font_size - 10;
+        } while ((resizable_text.height() > max_height) && font_size > 3);
+    };
+
     timer();
     clearWord();
     $(document).bind('touchmove', false);
@@ -73,7 +84,16 @@ $('#writing_page').bind('pageinit', function() {
     letter_container.click(function() {
         current_word.text(current_word.text() + letter.text());
         clear_button.removeClass('ui-disabled');
+        textfill(current_word_container, current_word);
         resetLetter();
+    });
+    
+    $(window).resize(function() {
+        textfill(letter_container, letter);
+    });
+    
+    $(document).ready(function() {
+        textfill(letter_container, letter);
     });
 
     alphabet_form.change(function() {
