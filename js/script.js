@@ -33,8 +33,7 @@ $('#writing-page').bind('pageinit', function () {
         letterChangeTimer,
         resetLetter,
         resizeTexts,
-        textFill,
-        waitForReady;
+        textFill;
 
     /**
      * Resets the letter to the beginning of the alphabet.
@@ -103,18 +102,6 @@ $('#writing-page').bind('pageinit', function () {
     };
 
     /**
-     * Hack because pageinit is very early, before letterContainer
-     * height is ready. Runs textFill when it is ready.
-     */
-    waitForReady = function () {
-        if (letterContainer.height() === 65) {
-            setTimeout(waitForReady, 5);
-        } else {
-            resizeTexts();
-        }
-    };
-
-    /**
      * Calls textFill with letter's text and text
      * of the current word.
      */
@@ -135,7 +122,6 @@ $('#writing-page').bind('pageinit', function () {
 
     letterChangeTimer();
     clearWord();
-    waitForReady();
 
     $(document).bind('touchmove', false);
     $(document).ready(resizeTexts);
