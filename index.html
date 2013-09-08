@@ -1,12 +1,11 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
+<!DOCTYPE html>
+<html>
+<head>
   <title>Letter Tap</title>
   <meta charset="utf-8" />
   <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, charset=utf-8" /> 
   <meta name="viewport"
-        id="vp"
         content="initial-scale=1.0, user-scalable=no, maximum-scale=1, media=(device-height: 568px)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <link rel="stylesheet" href="//code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
@@ -15,8 +14,10 @@
   <link rel="apple-touch-icon" href="icons/iphone-home-screen.png" />
   <link rel="apple-touch-icon" sizes="72x72" href="icons/ipad-home-screen.png" />
   <link rel="apple-touch-icon" sizes="114x114" href="icons/retina-iphone-home-screen.png" />
-</head> 
-<body> 
+</head>
+<body>
+  <!-- Main page is for writing. It has a large letter to tap, an area for
+       the current word to be displayed and buttons for the carer -->
   <div data-role="page" id="writing-page">
     <div id="writing-page-content" data-role="content">
       <a  id="letter-container"
@@ -54,6 +55,7 @@
     </div>
   </div>
 
+  <!-- Settings page allows choosing alphabet and speed -->
   <div  data-role="page"
         id="settings-page"
         data-overlay-theme="c"
