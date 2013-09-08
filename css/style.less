@@ -1,56 +1,63 @@
-input.ui-slider-input {
-    display: none;
-}
-
-#current-word-container {
-    word-wrap: break-word;
-    width: 50%;
-    float: left;
-    padding-left: 5%;
-}
-
-#letter-container {
-    position: absolute;
-    height: 65%;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    padding:0;
-}
-
-#carer-container {
-    width: 135px;
-    float: right;
-}
-
-#settings-content {
-    display: block;
-    margin: auto auto;
-    text-align: center;
-}
-
-#speed-label {
-    font-size: 1.2em;
-    display: inline;
-}
-
-#alphabet_form {
-    padding-top: 2em;
-}
-
-#bottom-section {
-    width: 100%;
-    position: absolute;
-    height: 33%;
-    bottom: 0;
-}
-
 #writing-page {
-    min-width: 300px;
-    min-height: 300px;
+  min-height: 300px;
+  min-width: 300px;
 }
 
 #writing-page-content {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
+
+/* Main letter */
+
+#letter-container {
+  height: 65%;
+  margin: 0;
+  padding:0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+/* Bottom section */
+
+#current-word-container {
+  float: left;
+  padding-left: 5%;
+  width: 50%;
+  word-wrap: break-word;
+}
+
+#bottom-section {
+  bottom: 0;
+  height: 33%;
+  position: absolute;
+  width: 100%;
+}
+
+#carer-container {
+  float: right;
+  width: 135px;
+}
+
+/* Settings */
+
+input.ui-slider-input {
+  display: none;
+}
+
+#settings-content {
+  display: block;
+  margin: auto auto;
+  text-align: center;
+}
+
+#speed-label {
+  display: inline;
+  font-size: 1.2em;
+}
+
+#alphabet-form {
+  padding-top: 2em;
+}
+
