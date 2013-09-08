@@ -1,6 +1,7 @@
 /*global $ */
 /*jslint browser: true*/
 $('#writing-page').bind('pageinit', function () {
+        // Constants
     var ALPHABET_NORMAL_ORDER = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
                                  'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
                                  'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
@@ -8,25 +9,28 @@ $('#writing-page').bind('pageinit', function () {
         ALPHABET_BY_FREQUENCY = ['E', 'T', 'A', 'O', 'I', 'N', 'S', 'H', 'R',
                                  'D', 'L', 'C', 'U', 'M', 'W', 'F', 'G', 'Y',
                                  'P', 'B', 'V', 'K', 'J', 'X', 'Q', 'Z'],
-        position = 0,
-        currentAlphabet = ALPHABET_NORMAL_ORDER,
+        MAX_FONT_FOR_LETTER = 500,
+        MAX_FONT_FOR_WORD = 100,
         MAX_SECONDS_PER_CHANGE = 8,
-        letter = $('#letter'),
-        letterContainer = $('#letter-container'),
-        currentWord = $('#current-word'),
-        currentWordContainer = $('#current-word-container'),
+        // Initialised variables
+        currentAlphabet = ALPHABET_NORMAL_ORDER,
+        firstLetterAfterReset = false,
+        speedScale = 3,
+        position = 0,
+        // DOM objects
+        alphabetForm = $('#alphabet-form'),
         bottomSection = $('#bottom-section'),
         clearButton = $('#clear-button'),
-        alphabetForm = $('#alphabet-form'),
+        currentWord = $('#current-word'),
+        currentWordContainer = $('#current-word-container'),
+        letter = $('#letter'),
+        letterContainer = $('#letter-container'),
         settingsPage = $('#settings-page'),
-        firstLetterAfterReset = false,
-        MAX_FONT_FOR_LETTER = 500,
-        speedScale = 3,
-        MAX_FONT_FOR_WORD = 100,
-        resetLetter,
-        letterChangeTimer,
+        // Functions
         clearWord,
         changeAlphabet,
+        letterChangeTimer,
+        resetLetter,
         textFill,
         waitForReady;
 
