@@ -36,12 +36,20 @@ $('#writing-page').bind('pageinit', function () {
         textFill,
         waitForReady;
 
+    /**
+     * Resets the letter to the beginning of the alphabet.
+     */
     resetLetter = function () {
         position = 0;
         letter.text(currentAlphabet[position]);
         firstLetterAfterReset = true;
     };
 
+    /**
+     * After a specified time, the letter will move
+     * on one position in the alphabet. This is doubled
+     * if the letter is the first letter after reset.
+     */
     letterChangeTimer = function () {
         var speedSlider = $('#speed-slider'),
             step = firstLetterAfterReset ? 0 : 1;
@@ -53,18 +61,31 @@ $('#writing-page').bind('pageinit', function () {
         setTimeout(letterChangeTimer, MAX_SECONDS_PER_CHANGE * 1000 / speedScale);
     };
 
+    /**
+     * Clears the current word, making the Clear
+     * button disabled.
+     */
     clearWord = function () {
         currentWord.text('');
         resetLetter();
         clearButton.addClass('ui-disabled');
     };
 
+    /**
+     * Changes alphabet based on which radio button is checked
+     * from the alphabet form, and starts from the beginning.
+     */
     changeAlphabet = function () {
         currentAlphabet = $('#alphabet-form :radio:checked').val() === 'normal' ?
                 ALPHABET_NORMAL_ORDER : ALPHABET_BY_FREQUENCY;
         resetLetter();
     };
 
+    /**
+     * Takes a container and text to fit in it, and makes the text
+     * as big as will possibly fit. Smaller the maximum font, the
+     * faster this runs.
+     */
     textFill = function (container, resizableText, maxFont) {
         var fontSize = maxFont,
             maxHeight = container.height(),
@@ -81,7 +102,10 @@ $('#writing-page').bind('pageinit', function () {
         return fontSize;
     };
 
-    // Hack because pageinit is very early, before letterContainer height is ready
+    /**
+     * Hack because pageinit is very early, before letterContainer
+     * height is ready. Runs textFill when it is ready.
+     */
     waitForReady = function () {
         if (letterContainer.height() === 65) {
             setTimeout(waitForReady, 5);
@@ -90,11 +114,18 @@ $('#writing-page').bind('pageinit', function () {
         }
     };
 
+    /**
+     * Calls textFill with letter's text and text
+     * of the current word.
+     */
     resizeTexts = function () {
         textFill(letterContainer, letter, MAX_FONT_FOR_LETTER);
         textFill(bottomSection, currentWord, MAX_FONT_FOR_WORD);
     };
 
+    /**
+     * Adds the current letter to the current word
+     */
     addLetter = function () {
         currentWord.text(currentWord.text() + letter.text());
         clearButton.removeClass('ui-disabled');
