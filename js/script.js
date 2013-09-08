@@ -27,10 +27,12 @@ $('#writing-page').bind('pageinit', function () {
         letterContainer = $('#letter-container'),
         settingsPage = $('#settings-page'),
         // Functions
+        addLetter,
         clearWord,
         changeAlphabet,
         letterChangeTimer,
         resetLetter,
+        resizeTexts,
         textFill,
         waitForReady;
 
@@ -41,7 +43,12 @@ $('#writing-page').bind('pageinit', function () {
     };
 
     letterChangeTimer = function () {
-        var timeBetweenChanges = MAX_SECONDS_PER_CHANGE * 1000 / speedScale;
+        var speedSlider = $('#speed-slider'),
+            timeBetweenChanges;
+
+        speedScale = speedSlider ? speedSlider.val() : speedScale;
+
+        timeBetweenChanges = MAX_SECONDS_PER_CHANGE * 1000 / speedScale;
         if (!firstLetterAfterReset) {
             position = (position + 1) % currentAlphabet.length;
             letter.text(currentAlphabet[position]);
@@ -57,13 +64,9 @@ $('#writing-page').bind('pageinit', function () {
         clearButton.addClass('ui-disabled');
     };
 
-    changeAlphabet = function (selectedAlphabet) {
-        if (selectedAlphabet === 'normal') {
-            currentAlphabet = ALPHABET_NORMAL_ORDER;
-        } else if (selectedAlphabet === 'frequency') {
-            currentAlphabet = ALPHABET_BY_FREQUENCY;
-        }
-
+    changeAlphabet = function () {
+        currentAlphabet = $('#alphabet-form :radio:checked').val() === 'normal' ?
+                ALPHABET_NORMAL_ORDER : ALPHABET_BY_FREQUENCY;
         resetLetter();
     };
 
@@ -88,49 +91,31 @@ $('#writing-page').bind('pageinit', function () {
         if (letterContainer.height() === 65) {
             setTimeout(waitForReady, 5);
         } else {
-            textFill(letterContainer, letter, MAX_FONT_FOR_LETTER);
+            resizeTexts();
         }
+    };
+
+    resizeTexts = function () {
+        textFill(letterContainer, letter, MAX_FONT_FOR_LETTER);
+        textFill(bottomSection, currentWord, MAX_FONT_FOR_WORD);
+    };
+
+    addLetter = function () {
+        currentWord.text(currentWord.text() + letter.text());
+        clearButton.removeClass('ui-disabled');
+        resizeTexts();
+        resetLetter();
     };
 
     letterChangeTimer();
     clearWord();
     waitForReady();
 
-    settingsPage.bind('pageinit', function () {
-        var speedSlider = $('#speed-slider');
-        speedSlider.change(function () {
-            speedScale = $(this).val();
-        });
-    });
-
-    settingsPage.bind('pagehide', function () {
-        resetLetter();
-    });
-
-    letterContainer.click(function () {
-        currentWord.text(currentWord.text() + letter.text());
-        clearButton.removeClass('ui-disabled');
-        textFill(bottomSection, currentWord, MAX_FONT_FOR_WORD);
-        resetLetter();
-    });
-
-    $(window).resize(function () {
-        textFill(letterContainer, letter, MAX_FONT_FOR_LETTER);
-        textFill(bottomSection, currentWord, MAX_FONT_FOR_WORD);
-    });
-
     $(document).bind('touchmove', false);
-
-    $(document).ready(function () {
-        textFill(letterContainer, letter, MAX_FONT_FOR_LETTER);
-    });
-
-    alphabetForm.change(function () {
-        var selectedAlphabet = $('#alphabet-form :radio:checked').val();
-        changeAlphabet(selectedAlphabet);
-    });
-
-    clearButton.click(function () {
-        clearWord();
-    });
+    $(document).ready(resizeTexts);
+    $(window).resize(resizeTexts);
+    alphabetForm.bind('change', changeAlphabet);
+    clearButton.bind('click', clearWord);
+    letterContainer.bind('click', addLetter);
+    settingsPage.bind('pagehide', resetLetter);
 });
