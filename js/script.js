@@ -123,11 +123,11 @@ $('#writing-page').bind('pageinit', function () {
     letterChangeTimer();
     clearWord();
 
-    $(document).bind('touchmove', false);
+    $(document).on('touchmove', false);
     $(document).ready(resizeTexts);
-    $(window).resize(resizeTexts);
-    alphabetForm.bind('change', changeAlphabet);
-    clearButton.bind('click', clearWord);
-    letterContainer.bind('click', addLetter);
-    settingsPage.bind('pagehide', resetLetter);
+    $(window).on('resize', resizeTexts);
+    alphabetForm.on('change', changeAlphabet);
+    clearButton.on('click', clearWord);
+    letterContainer.on('click', addLetter);
+    settingsPage.on('pagehide', resetLetter);
 });
