@@ -99,7 +99,7 @@ $('#writing-page').bind('pageinit', function () {
         });
     });
 
-    settingsPage.bind("pagehide", function () {
+    settingsPage.bind('pagehide', function () {
         resetLetter();
     });
 
@@ -122,7 +122,7 @@ $('#writing-page').bind('pageinit', function () {
     });
 
     alphabetForm.change(function () {
-        var selectedAlphabet = $("#alphabet-form :radio:checked").val();
+        var selectedAlphabet = $('#alphabet-form :radio:checked').val();
         changeAlphabet(selectedAlphabet);
     });
 
