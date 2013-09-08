@@ -9,8 +9,7 @@ $('#writing-page').bind('pageinit', function () {
         ALPHABET_BY_FREQUENCY = ['E', 'T', 'A', 'O', 'I', 'N', 'S', 'H', 'R',
                                  'D', 'L', 'C', 'U', 'M', 'W', 'F', 'G', 'Y',
                                  'P', 'B', 'V', 'K', 'J', 'X', 'Q', 'Z'],
-        MAX_FONT_FOR_LETTER = 500,
-        MAX_FONT_FOR_WORD = 100,
+        MAX_FONT = 500,
         MAX_SECONDS_PER_CHANGE = 8,
         // Initialised variables
         currentAlphabet = ALPHABET_NORMAL_ORDER,
@@ -84,12 +83,13 @@ $('#writing-page').bind('pageinit', function () {
      * as big as will possibly fit. Smaller the maximum font, the
      * faster this runs.
      */
-    textFill = function (container, resizableText, maxFont) {
-        var fontSize = maxFont,
+    textFill = function (container, resizableText) {
+        var fontSize = MAX_FONT,
             maxHeight = container.height(),
-            step = Math.ceil(maxFont / 100);
+            step;
 
         do {
+            step = Math.ceil(fontSize / 100);
             resizableText.css('font-size', fontSize);
             fontSize = fontSize - step;
         } while ((resizableText.height() > maxHeight) && fontSize > step);
@@ -101,8 +101,8 @@ $('#writing-page').bind('pageinit', function () {
      * of the current word.
      */
     resizeTexts = function () {
-        textFill(letterContainer, letter, MAX_FONT_FOR_LETTER);
-        textFill(bottomSection, currentWord, MAX_FONT_FOR_WORD);
+        textFill(letterContainer, letter);
+        textFill(bottomSection, currentWord);
     };
 
     /**
