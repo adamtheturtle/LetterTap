@@ -1,6 +1,8 @@
 /*global $ */
 /*jslint browser: true*/
-$('#writing-page').bind('pageinit', function () {
+var writingPage = $('#writing-page');
+
+writingPage.bind('pageinit', function () {
         // Constants
     var ALPHABET_NORMAL_ORDER = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
                                  'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
@@ -124,4 +126,5 @@ $('#writing-page').bind('pageinit', function () {
     clearButton.on('click', clearWord);
     letterContainer.on('click', addLetter);
     settingsPage.on('pagehide', resetLetter);
+    writingPage.keyup(addLetter);
 });
