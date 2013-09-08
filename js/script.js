@@ -20,9 +20,9 @@ $('#writing-page').bind('pageinit', function () {
         alphabetForm = $('#alphabet-form'),
         settingsPage = $('#settings-page'),
         firstLetterAfterReset = false,
-        maxFont_FOR_LETTER = 500,
+        MAX_FONT_FOR_LETTER = 500,
         speedScale = 3,
-        maxFont_FOR_WORD = 100,
+        MAX_FONT_FOR_WORD = 100,
         resetLetter,
         letterChangeTimer,
         clearWord,
@@ -76,6 +76,7 @@ $('#writing-page').bind('pageinit', function () {
 
             fontSize = fontSize - step;
         } while ((resizableText.height() > maxHeight) && fontSize > step);
+        return fontSize;
     };
 
     // Hack because pageinit is very early, before letterContainer height is ready
@@ -83,7 +84,7 @@ $('#writing-page').bind('pageinit', function () {
         if (letterContainer.height() === 65) {
             setTimeout(waitForReady, 5);
         } else {
-            textFill(letterContainer, letter, maxFont_FOR_LETTER);
+            textFill(letterContainer, letter, MAX_FONT_FOR_LETTER);
         }
     };
 
@@ -105,16 +106,20 @@ $('#writing-page').bind('pageinit', function () {
     letterContainer.click(function () {
         currentWord.text(currentWord.text() + letter.text());
         clearButton.removeClass('ui-disabled');
-        textFill(bottomSection, currentWord, maxFont_FOR_WORD);
+        textFill(bottomSection, currentWord, MAX_FONT_FOR_WORD);
         resetLetter();
     });
 
     $(window).resize(function () {
-        textFill(letterContainer, letter, maxFont_FOR_LETTER);
-        textFill(bottomSection, currentWord, maxFont_FOR_WORD);
+        textFill(letterContainer, letter, MAX_FONT_FOR_LETTER);
+        textFill(bottomSection, currentWord, MAX_FONT_FOR_WORD);
     });
 
     $(document).bind('touchmove', false);
+
+    $(document).ready(function () {
+        textFill(letterContainer, letter, MAX_FONT_FOR_LETTER);
+    });
 
     alphabetForm.change(function () {
         var selectedAlphabet = $("#alphabet-form :radio:checked").val();
