@@ -44,18 +44,13 @@ $('#writing-page').bind('pageinit', function () {
 
     letterChangeTimer = function () {
         var speedSlider = $('#speed-slider'),
-            timeBetweenChanges;
+            step = firstLetterAfterReset ? 0 : 1;
 
-        speedScale = speedSlider ? speedSlider.val() : speedScale;
-
-        timeBetweenChanges = MAX_SECONDS_PER_CHANGE * 1000 / speedScale;
-        if (!firstLetterAfterReset) {
-            position = (position + 1) % currentAlphabet.length;
-            letter.text(currentAlphabet[position]);
-        }
-
+        position = (position + step) % currentAlphabet.length;
+        letter.text(currentAlphabet[position]);
         firstLetterAfterReset = false;
-        setTimeout(letterChangeTimer, timeBetweenChanges);
+        speedScale = speedSlider ? speedSlider.val() : speedScale;
+        setTimeout(letterChangeTimer, MAX_SECONDS_PER_CHANGE * 1000 / speedScale);
     };
 
     clearWord = function () {
