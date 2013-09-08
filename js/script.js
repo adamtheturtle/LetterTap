@@ -94,7 +94,7 @@ writingPage.bind('pageinit', function () {
             step = Math.ceil(fontSize / 100);
             resizableText.css('font-size', fontSize);
             fontSize = fontSize - step;
-        } while ((resizableText.height() > maxHeight) && fontSize > step);
+        } while (resizableText.height() > maxHeight);
     };
 
     /**
