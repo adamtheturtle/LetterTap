@@ -18,7 +18,7 @@ $('#writing-page').bind('pageinit', function () {
         position = 0,
         // DOM objects
         alphabetForm = $('#alphabet-form'),
-        bottomSection = $('#bottom-section'),
+        bottomSection = $('#carer-section'),
         clearButton = $('#clear-button'),
         currentWord = $('#current-word'),
         letter = $('#letter'),
@@ -93,7 +93,6 @@ $('#writing-page').bind('pageinit', function () {
             resizableText.css('font-size', fontSize);
             fontSize = fontSize - step;
         } while ((resizableText.height() > maxHeight) && fontSize > step);
-        return fontSize;
     };
 
     /**
