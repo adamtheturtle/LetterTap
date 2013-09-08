@@ -22,7 +22,6 @@ $('#writing-page').bind('pageinit', function () {
         bottomSection = $('#bottom-section'),
         clearButton = $('#clear-button'),
         currentWord = $('#current-word'),
-        currentWordContainer = $('#current-word-container'),
         letter = $('#letter'),
         letterContainer = $('#letter-container'),
         settingsPage = $('#settings-page'),
@@ -92,10 +91,6 @@ $('#writing-page').bind('pageinit', function () {
 
         do {
             resizableText.css('font-size', fontSize);
-            if (resizableText === currentWord) {
-                currentWordContainer.css('line-height', fontSize  + 'px');
-            }
-
             fontSize = fontSize - step;
         } while ((resizableText.height() > maxHeight) && fontSize > step);
         return fontSize;
