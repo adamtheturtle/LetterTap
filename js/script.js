@@ -21,8 +21,10 @@ writingPage.bind('pageinit', function () {
         // DOM objects
         alphabetForm = $('#alphabet-form'),
         bottomSection = $('#carer-section'),
+        carerButtonContainer = $('#carer-button-container'),
         clearButton = $('#clear-button'),
         currentWord = $('#current-word'),
+        currentWordContainer = $('#current-word-container'),
         letter = $('#letter'),
         letterContainer = $('#letter-container'),
         settingsPage = $('#settings-page'),
@@ -90,9 +92,10 @@ writingPage.bind('pageinit', function () {
 
         /**
          * Calls textFill with letter's text and text
-         * of the current word.
+         * of the current word. Makes the current word container as large as possible.
          */
         resizeTexts = function () {
+            currentWordContainer.width((bottomSection.width() * 0.9) - carerButtonContainer.width());
             textFill(letterContainer, letter);
             textFill(bottomSection, currentWord);
         },
@@ -114,6 +117,7 @@ writingPage.bind('pageinit', function () {
     $(document).ready(resizeTexts);
     $(window).on('resize', resizeTexts);
     alphabetForm.on('change', changeAlphabet);
+    currentWordContainer.on('click', addLetter);
     clearButton.on('click', clearWord);
     letterContainer.on('click', addLetter);
     settingsPage.on('pagehide', resetLetter);
