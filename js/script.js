@@ -8,12 +8,12 @@ writingPage.bind('pageinit', function () {
     var ALPHABET_NORMAL_ORDER = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
                                  'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
                                  'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
-
         ALPHABET_BY_FREQUENCY = ['E', 'T', 'A', 'O', 'I', 'N', 'S', 'H', 'R',
                                  'D', 'L', 'C', 'U', 'M', 'W', 'F', 'G', 'Y',
                                  'P', 'B', 'V', 'K', 'J', 'X', 'Q', 'Z'],
+        ALPHABET_YES_NO = ['YES', 'NO'],
         MAX_FONT = 500,
-        MAX_SECONDS_PER_CHANGE = 8,
+        MAX_SECONDS_PER_CHANGE = 16,
         // Initialised variables
         currentAlphabet = ALPHABET_NORMAL_ORDER,
         firstLetterAfterReset = false,
@@ -31,11 +31,40 @@ writingPage.bind('pageinit', function () {
         settingsPage = $('#settings-page'),
         // Functions
         /**
+         * Takes a container and text to fit in it, and makes the text
+         * as big as will possibly fit. Smaller the maximum font, the
+         * faster this runs.
+         */
+        textFill = function (container, resizableText) {
+            var fontSize = MAX_FONT,
+                maxHeight = container.height(),
+                maxWidth = container.width() * 0.9,
+                step;
+
+            do {
+                step = Math.ceil(fontSize / 100);
+                resizableText.css('font-size', fontSize);
+                fontSize = fontSize - step;
+            } while (resizableText.height() > maxHeight || resizableText.width() > maxWidth);
+        },
+
+        /**
+         * Calls textFill with letter's text and text
+         * of the current word. Makes the current word container as large as possible.
+         */
+        resizeTexts = function () {
+            currentWordContainer.width((carerSection.width() * 0.9) - carerButtonContainer.width());
+            textFill(letterContainer, letter);
+            textFill(carerSection, currentWord);
+        },
+
+        /**
          * Resets the letter to the beginning of the alphabet.
          */
         resetLetter = function () {
             position = 0;
             letter.text(currentAlphabet[position]);
+            resizeTexts();
             firstLetterAfterReset = true;
         },
 
@@ -51,10 +80,11 @@ writingPage.bind('pageinit', function () {
             if (!firstLetterAfterReset) {
                 position = (position + 1) % currentAlphabet.length;
                 if (isSettingsOpen) {
-                  position = 0;
+                    position = 0;
                 }
 
                 letter.text(currentAlphabet[position]);
+                resizeTexts();
             }
 
             firstLetterAfterReset = false;
@@ -87,36 +117,12 @@ writingPage.bind('pageinit', function () {
             case 'frequency':
                 currentAlphabet = ALPHABET_BY_FREQUENCY;
                 break;
+            case 'yes/no':
+                currentAlphabet = ALPHABET_YES_NO;
+                break;
             }
 
             resetLetter();
-        },
-
-        /**
-         * Takes a container and text to fit in it, and makes the text
-         * as big as will possibly fit. Smaller the maximum font, the
-         * faster this runs.
-         */
-        textFill = function (container, resizableText) {
-            var fontSize = MAX_FONT,
-                maxHeight = container.height(),
-                step;
-
-            do {
-                step = Math.ceil(fontSize / 100);
-                resizableText.css('font-size', fontSize);
-                fontSize = fontSize - step;
-            } while (resizableText.height() > maxHeight);
-        },
-
-        /**
-         * Calls textFill with letter's text and text
-         * of the current word. Makes the current word container as large as possible.
-         */
-        resizeTexts = function () {
-            currentWordContainer.width((carerSection.width() * 0.9) - carerButtonContainer.width());
-            textFill(letterContainer, letter);
-            textFill(carerSection, currentWord);
         },
 
         /**
@@ -138,6 +144,7 @@ writingPage.bind('pageinit', function () {
     $(document).ready(resizeTexts);
     $(window).on('resize', resizeTexts);
     alphabetForm.on('change', changeAlphabet);
+    alphabetForm.on('change', resizeTexts);
     currentWordContainer.on('click', addLetter);
     clearButton.on('click', clearWord);
     letterContainer.on('click', addLetter);
