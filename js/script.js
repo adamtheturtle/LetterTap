@@ -68,8 +68,13 @@ writingPage.bind('pageinit', function () {
          * from the alphabet form, and starts from the beginning.
          */
         changeAlphabet = function () {
-            currentAlphabet = $('#alphabet-form :radio:checked').val() === 'normal' ?
-                    ALPHABET_NORMAL_ORDER : ALPHABET_BY_FREQUENCY;
+            var currentAlphabetName = $('#alphabet-form :radio:checked').val();
+            if (currentAlphabetName === 'normal') {
+              currentAlphabet = ALPHABET_NORMAL_ORDER;
+            } else if (currentAlphabetName === 'frequency') {
+              currentAlphabet = ALPHABET_BY_FREQUENCY;
+            }
+
             resetLetter();
         },
 
