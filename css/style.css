@@ -1,0 +1,51 @@
+#writing-page {
+  min-height: 300px;
+  min-width: 300px;
+}
+#writing-page-content {
+  margin: 0;
+  padding: 0;
+}
+/* Main letter */
+#letter-container {
+  height: 65%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+/* Bottom section */
+#current-word-container {
+  float: left;
+  height: 100%;
+  padding-left: 5%;
+  width: 50%;
+  word-wrap: break-word;
+}
+#carer-section {
+  bottom: 0;
+  height: 33%;
+  position: absolute;
+  width: 100%;
+}
+#carer-button-container {
+  float: right;
+  width: 135px;
+}
+/* Settings */
+input.ui-slider-input {
+  display: none;
+}
+#settings-content {
+  display: block;
+  margin: auto auto;
+  text-align: center;
+}
+#speed-label {
+  display: inline;
+  font-size: 1.2em;
+}
+#alphabet-form {
+  padding-top: 2em;
+}
