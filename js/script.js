@@ -3,6 +3,7 @@
 var writingPage = $('#writing-page');
 
 writingPage.bind('pageinit', function () {
+    "use strict";
         // Constants
     var ALPHABET_NORMAL_ORDER = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
                                  'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
