@@ -25,6 +25,4 @@ The only settings are to use a frequency-of-use sorted alphabet instead of the n
 Roadmap and known issues
 ------------------------
 
-* Fix FOUC
-* User testing to determine whether it needs a "Tap to Start" option
-* User testing to determine whether it needs a  space option
+* Add a "Yes" / "No" alphabet

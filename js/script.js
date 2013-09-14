@@ -44,15 +44,24 @@ writingPage.bind('pageinit', function () {
          * on one position in the alphabet. This is doubled
          * if the letter is the first letter after reset.
          */
-        letterChangeTimer = function () {
+        letterChange = function () {
             var speedSlider = $('#speed-slider'),
-                step = firstLetterAfterReset ? 0 : 1;
+                isSettingsOpen = settingsPage.is(":visible");
 
-            position = (position + step) % currentAlphabet.length;
-            letter.text(currentAlphabet[position]);
+            if (!firstLetterAfterReset) {
+                position = (position + 1) % currentAlphabet.length;
+                if (isSettingsOpen) {
+                  position = 0;
+                }
+
+                letter.text(currentAlphabet[position]);
+            }
+
             firstLetterAfterReset = false;
+
+            // If the speed slider can be found, use its value
             speedScale = speedSlider ? speedSlider.val() : speedScale;
-            setTimeout(letterChangeTimer, MAX_SECONDS_PER_CHANGE * 1000 / speedScale);
+            setTimeout(letterChange, MAX_SECONDS_PER_CHANGE * 1000 / speedScale);
         },
         /**
          * Clears the current word, making the Clear
@@ -120,10 +129,12 @@ writingPage.bind('pageinit', function () {
             resetLetter();
         };
 
-    letterChangeTimer();
+    letterChange();
     clearWord();
 
+    // No scrolling on mobile
     $(document).on('touchmove', false);
+    // The element sizes are not ready until $(document).ready() for resize
     $(document).ready(resizeTexts);
     $(window).on('resize', resizeTexts);
     alphabetForm.on('change', changeAlphabet);
@@ -131,5 +142,6 @@ writingPage.bind('pageinit', function () {
     clearButton.on('click', clearWord);
     letterContainer.on('click', addLetter);
     settingsPage.on('pagehide', resetLetter);
+    // Any key on a keyboard adds a letter
     writingPage.keyup(addLetter);
 });
