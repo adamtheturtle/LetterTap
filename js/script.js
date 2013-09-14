@@ -55,7 +55,7 @@ writingPage.bind('pageinit', function () {
         },
         /**
          * Clears the current word, making the Clear
-         * button disabled.
+         * button disabled and resetting the letter.
          */
         clearWord = function () {
             currentWord.text('');
@@ -69,10 +69,14 @@ writingPage.bind('pageinit', function () {
          */
         changeAlphabet = function () {
             var currentAlphabetName = $('#alphabet-form :radio:checked').val();
-            if (currentAlphabetName === 'normal') {
-              currentAlphabet = ALPHABET_NORMAL_ORDER;
-            } else if (currentAlphabetName === 'frequency') {
-              currentAlphabet = ALPHABET_BY_FREQUENCY;
+
+            switch (currentAlphabetName) {
+            case 'normal':
+                currentAlphabet = ALPHABET_NORMAL_ORDER;
+                break;
+            case 'frequency':
+                currentAlphabet = ALPHABET_BY_FREQUENCY;
+                break;
             }
 
             resetLetter();
