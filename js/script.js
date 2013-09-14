@@ -53,19 +53,22 @@ writingPage.bind('pageinit', function () {
          * of the current word. Makes the current word container as large as possible.
          */
         resizeTexts = function () {
-            currentWordContainer.width((carerSection.width() * 0.9) - carerButtonContainer.width());
             textFill(letterContainer, letter);
             textFill(carerSection, currentWord);
+            currentWordContainer.width((carerSection.width() * 0.9) - carerButtonContainer.width());
         },
 
         /**
          * Resets the letter to the beginning of the alphabet.
          */
         resetLetter = function () {
+            var isSettingsOpen = settingsPage.is(":visible");
             position = 0;
             letter.text(currentAlphabet[position]);
-            resizeTexts();
             firstLetterAfterReset = true;
+            if (!isSettingsOpen) {
+                resizeTexts();
+            }
         },
 
         /**
@@ -144,7 +147,6 @@ writingPage.bind('pageinit', function () {
     $(document).ready(resizeTexts);
     $(window).on('resize', resizeTexts);
     alphabetForm.on('change', changeAlphabet);
-    alphabetForm.on('change', resizeTexts);
     currentWordContainer.on('click', addLetter);
     clearButton.on('click', clearWord);
     letterContainer.on('click', addLetter);
