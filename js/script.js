@@ -20,8 +20,8 @@ writingPage.bind('pageinit', function () {
         position = 0,
         // DOM objects
         alphabetForm = $('#alphabet-form'),
-        bottomSection = $('#carer-section'),
         carerButtonContainer = $('#carer-button-container'),
+        carerSection = $('#carer-section'),
         clearButton = $('#clear-button'),
         currentWord = $('#current-word'),
         currentWordContainer = $('#current-word-container'),
@@ -95,9 +95,9 @@ writingPage.bind('pageinit', function () {
          * of the current word. Makes the current word container as large as possible.
          */
         resizeTexts = function () {
-            currentWordContainer.width((bottomSection.width() * 0.9) - carerButtonContainer.width());
+            currentWordContainer.width((carerSection.width() * 0.9) - carerButtonContainer.width());
             textFill(letterContainer, letter);
-            textFill(bottomSection, currentWord);
+            textFill(carerSection, currentWord);
         },
 
         /**
