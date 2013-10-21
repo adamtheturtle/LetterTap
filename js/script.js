@@ -11,7 +11,7 @@ writingPage.bind('pageinit', function () {
         ALPHABET_BY_FREQUENCY = ['E', 'T', 'A', 'O', 'I', 'N', 'S', 'H', 'R',
                                  'D', 'L', 'C', 'U', 'M', 'W', 'F', 'G', 'Y',
                                  'P', 'B', 'V', 'K', 'J', 'X', 'Q', 'Z'],
-        ALPHABET_YES_NO = ['YES', 'NO'],
+        ALPHABET_YES_NO = ['\nYES\n', '\nNO\n'],
         MAX_FONT = 500,
         MAX_SECONDS_PER_CHANGE = 16,
         // Initialised variables
