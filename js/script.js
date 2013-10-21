@@ -41,8 +41,6 @@ writingPage.bind('pageinit', function () {
                 maxWidth = container.width() * 0.9,
                 step;
 
-            resizableText.hide();
-
             do {
                 step = Math.ceil(fontSize / 100);
                 resizableText.css('font-size', fontSize);
