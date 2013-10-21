@@ -41,11 +41,14 @@ writingPage.bind('pageinit', function () {
                 maxWidth = container.width() * 0.9,
                 step;
 
+            resizableText.hide();
+
             do {
                 step = Math.ceil(fontSize / 100);
                 resizableText.css('font-size', fontSize);
                 fontSize = fontSize - step;
             } while (resizableText.height() > maxHeight || resizableText.width() > maxWidth);
+            resizableText.show();
         },
 
         /**
@@ -63,6 +66,7 @@ writingPage.bind('pageinit', function () {
          */
         resetLetter = function () {
             var isSettingsOpen = settingsPage.is(":visible");
+            letter.hide();
             position = 0;
             letter.text(currentAlphabet[position]);
             firstLetterAfterReset = true;
