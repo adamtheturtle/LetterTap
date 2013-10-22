@@ -1,3 +1,9 @@
+// Stops letter being truncated with an ellipsis
+span.ui-btn-inner {
+ white-space: nowrap !important;
+ overflow: visible !important;
+}
+
 #writing-page {
   min-height: 300px;
   min-width: 300px;
@@ -17,6 +23,8 @@
   position: absolute;
   text-align: center;
   width: 100%;
+  overflow: visible;
+  text-overflow: string;
 }
 
 /* Bottom section */
